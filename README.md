@@ -4,9 +4,9 @@
 Для примера можно взять https://emphasoft-test-assignment.herokuapp.com/swagger/
 
 Для запуска приложения:
-cd/путь_до_проекта
-создать Superuser
-python manage.py runserver
+1) cd/путь_до_проекта
+2) создать Superuser
+3) запустить сервер: python manage.py runserver
 
 Примеры запросов через Postman: 
 POST http://127.0.0.1:8000/api-token-auth/ { "username": "user1", "password": "1234" } 
