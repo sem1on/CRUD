@@ -1,16 +1,14 @@
 from django.shortcuts import render
-from rest_framework import generics, permissions
-from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer
-from rest_framework.generics import get_object_or_404
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.response import Response
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
 from .models import CustomUser
+from .serializers import UserSerializer
 
 
 #register
-class RegisterAPI(generics.GenericAPIView):
-    serializer_class = RegisterSerializer
+class RegisterAPI(GenericAPIView):
+    serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -21,17 +19,14 @@ class RegisterAPI(generics.GenericAPIView):
         })
         
 
-
-class CustomUserView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
-
-    serializer_class = UserSerializer
-    queryset = CustomUser.objects.all()
-
-
-
 class CustomUserViewSet(RetrieveUpdateDestroyAPIView):
 
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
     lookup_field = 'id'
 
+
+class CustomUserView(ListCreateAPIView):
+    
+    serializer_class = UserSerializer
+    queryset = CustomUser.objects.all()
