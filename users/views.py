@@ -1,32 +1,13 @@
 from django.shortcuts import render
-from knox.models import AuthToken
-from rest_framework.response import Response
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
+from rest_framework.permissions import IsAuthenticated
 from .models import CustomUser
 from .serializers import UserSerializer
+from rest_framework import viewsets
 
 
-#register
-class RegisterAPI(GenericAPIView):
-    serializer_class = UserSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response({
-            'token': AuthToken.objects.create(user)[1],
-        })
-        
-
-class CustomUserViewSet(RetrieveUpdateDestroyAPIView):
+class CustomUserViewSet(viewsets.ModelViewSet):
 
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
+    permission_classes = [IsAuthenticated]
     lookup_field = 'id'
-
-
-class CustomUserView(ListCreateAPIView):
-    
-    serializer_class = UserSerializer
-    queryset = CustomUser.objects.all()

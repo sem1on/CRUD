@@ -1,0 +1,9 @@
+setuptools:
+Django
+djangorestframework
+djoser
+
+
+
+
+ 
