@@ -1,4 +1,4 @@
-# Тестовое задание
+# Задание
 
 Сделайте CRUD для юзеров с токен аутентификацией. 
 Для примера можно взять https://emphasoft-test-assignment.herokuapp.com/swagger/
