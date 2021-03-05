@@ -4,8 +4,9 @@
 
 Для запуска приложения:
 1) cd/путь_до_проекта
-2) создать Superuser
-3) запустить сервер: python manage.py runserver
+2) requirements.txt
+3) создать Superuser
+4) запустить сервер: python manage.py runserver
 
 Создание пользователей через Admin или в БД
 
